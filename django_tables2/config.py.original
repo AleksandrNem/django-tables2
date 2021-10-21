@@ -49,14 +49,7 @@ class RequestConfig:
             for arg in ("page", "per_page"):
                 name = getattr(table, "prefixed_%s_field" % arg)
                 try:
-                    if name == 'page':
-                        value = self.request.GET[name]
-                        if value == 'last':
-                            kwargs[arg] = 'last'
-                        else:
-                            kwargs[arg] = int(self.request.GET[name])
-                    else:    
-                        kwargs[arg] = int(self.request.GET[name])                    
+                    kwargs[arg] = int(self.request.GET[name])
                 except (ValueError, KeyError):
                     pass
 

@@ -581,10 +581,8 @@ class Table(metaclass=DeclarativeColumnsMetaclass):
 
         per_page = per_page or self._meta.per_page
         self.paginator = paginator_class(self.rows, per_page, *args, **kwargs)
-        if page == 'last':
-            self.page = self.paginator.page(self.paginator.num_pages)
-        else:
-            self.page = self.paginator.page(page)
+        self.page = self.paginator.page(page)
+
         return self
 
     @property
